@@ -16,28 +16,7 @@ async function handleGenerateNewShortURL(req, res) {
     return res.render("home", {
         id: shortID,
     });
-    // return res.json({ id: shortID });
 }
-
-// async function handleRedirectURL(req, res) {
-//     // console.log("Handling redirect for shortId:", req.params.shortId);
-//     const shortId = req.params.shortId;
-//     const entry = await URL.findOneAndUpdate({
-//         shortId
-//     }, 
-//     { 
-//         $push: {
-//             visitHistory: {
-//                 timestamp: Date.now(),
-//             },
-//         },
-//     }
-//   );
-//   if (!entry) {
-//     return res.status(404).json({ error: "Short URL not found" }); // Add this to handle if the shortId doesn't exist
-//   }
-//   res.redirect(entry.redirectURL);
-// }
 
 async function handleGetAnalytics(req, res) {
     const shortId = req.params.shortId;
@@ -50,7 +29,6 @@ async function handleGetAnalytics(req, res) {
 
 module.exports = {
     handleGenerateNewShortURL,
-    // handleRedirectURL,
     handleGetAnalytics,
 }
 

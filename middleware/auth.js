@@ -6,9 +6,6 @@ function checkForAuthentication(req, res, next) {
 
     if(!tokenCookie) return next();
 
-    // if(!authorizationHeaderValue || !authorizationHeaderValue.startsWith("Bearer"))
-    // return next();
-
     const token = tokenCookie;
     const user = getUser(token);
 
@@ -26,35 +23,7 @@ function restrictTo(roles = []) {
     };
 }
 
-// async function restrictToLoggedinUserOnly(req, res, next) {
-//     const userUid = req.headers["Authorization"];
-
-//     if(!userUid) return res.redirect("/login");
-//     const token = userUid.split('Bearer ')[1]
-//     const user = getUser(token);
-
-//     if(!user) return res.redirect("/login");
-
-//     req.user = user;
-//     next();
-// }
-
-// async function checkAuth(req, res, next) {
-//     const userUid = req.headers["authorization"];
-
-//     // if(!userUid) return res.redirect("/login");
-//     const token = userUid.split('Bearer ')[1]
-//     const user = getUser(token);
-
-//     // if(!user) return res.redirect("/login");
-
-//     req.user = user;
-//     next();
-// }
-
 module.exports = {
-    // restrictToLoggedinUserOnly,
-    // checkAuth,
     checkForAuthentication,
     restrictTo,
 }
